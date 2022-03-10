@@ -8,6 +8,7 @@ TagManager:
   - RedChip
   - BlueChip
   - GreenChip
+  - Objective
   layers:
   - Default
   - TransparentFX
