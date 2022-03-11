@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Bolt;
 using UnityEngine.AI;
 
 public class Navigate : MonoBehaviour
@@ -37,16 +38,11 @@ public class Navigate : MonoBehaviour
             case SnakeState.Attack:
                 navMeshAgent.SetDestination(chameleon.transform.position);
 
-                /*
-                 * Update when we have "caught" method 
-                 * 
-                 * if (chameleon state = hiden)
-                 * {
-                 *      ChangeState(SnakeState.Wander);
-                 * }
-                 * 
-                 */
-
+                if ((bool)Variables.ActiveScene.Get("IsHidden"))
+                {
+                    navMeshAgent.SetDestination(waypoints[currentWaypoint].position);
+                    currentState = SnakeState.Wander;
+                }
 
 
                 break;
