@@ -9,6 +9,7 @@ TagManager:
   - BlueChip
   - GreenChip
   - Objective
+  - Enemy
   layers:
   - Default
   - TransparentFX
