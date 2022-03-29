@@ -7,17 +7,26 @@ using UnityEngine.SceneManagement;
 public class gameOver : MonoBehaviour
 {
     public GameObject gameOverScreen;
-    public GameObject snake;
+    public GameObject[] snake;
+    public int numSnakes;
     public string scene;
 
     private void Update()
     {
-        float minDist = 2;
-        float dist = Vector3.Distance(snake.transform.position, transform.position);
+        float minDist = 4;
+        float dist;
         bool isHidden = (bool)Variables.ActiveScene.Get("IsHidden");
-        if (dist < minDist && isHidden == false)
+        if (isHidden == false)
         {
-            gameOverScreen.SetActive(true);
+            for (int i = 0; i < numSnakes; i++)
+            {
+                dist = Vector3.Distance(snake[i].transform.position, transform.position);       //calculates distance between the snake and the chameleon
+                if (dist < minDist)                                                             //checks if the snake is within game over range of the chameloen
+                {
+                    gameOverScreen.SetActive(true);                                             //activates game over screen
+                    Time.timeScale = 0f;                                                        //pauses game
+                }
+            }
         }
     }
 
