@@ -28,7 +28,7 @@ public class Navigate : MonoBehaviour
         switch(currentState)
         {
             case SnakeState.Wander:
-                if(navMeshAgent.remainingDistance < 10)
+                if(navMeshAgent.remainingDistance < 20)
                 {
                     currentWaypoint = (currentWaypoint + 1)%5;
                     navMeshAgent.SetDestination(waypoints[currentWaypoint].position);

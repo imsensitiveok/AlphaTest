@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Bolt;
 using UnityEngine.SceneManagement;
 
 public class gameOver : MonoBehaviour
 {
     public GameObject gameOverScreen;
     public GameObject snake;
+    public string scene;
 
     private void Update()
     {
-        float minDist = 1;
+        float minDist = 2;
         float dist = Vector3.Distance(snake.transform.position, transform.position);
-        if (dist < minDist)
+        bool isHidden = (bool)Variables.ActiveScene.Get("IsHidden");
+        if (dist < minDist && isHidden == false)
         {
             gameOverScreen.SetActive(true);
         }
@@ -20,6 +23,6 @@ public class gameOver : MonoBehaviour
 
     public void RestartButton()
     {
-        SceneManager.LoadScene("AlphaTest");
+        SceneManager.LoadScene(scene);
     }
 }
