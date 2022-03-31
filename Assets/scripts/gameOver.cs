@@ -24,7 +24,7 @@ public class gameOver : MonoBehaviour
                 if (dist < minDist)                                                             //checks if the snake is within game over range of the chameloen
                 {
                     gameOverScreen.SetActive(true);                                             //activates game over screen
-                    Time.timeScale = 0f;                                                        //pauses game
+                    
                 }
             }
         }
@@ -33,5 +33,6 @@ public class gameOver : MonoBehaviour
     public void RestartButton()
     {
         SceneManager.LoadScene(scene);
+        
     }
 }
