@@ -15,7 +15,6 @@ public class levelComplete : MonoBehaviour
         int ObjNum = (int)Variables.ActiveScene.Get("ObjNum");
         if (goal == ObjNum)
         {
-            Time.timeScale = 0f;    //pauses game
             winScreen.SetActive(true);
         }
     }
