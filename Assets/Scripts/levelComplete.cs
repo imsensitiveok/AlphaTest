@@ -9,6 +9,8 @@ public class levelComplete : MonoBehaviour
     public GameObject winScreen;
     public int goal;
     public string nextScene;
+    public int levelNum; 
+
 
     private void Update()
     {
@@ -16,6 +18,8 @@ public class levelComplete : MonoBehaviour
         if (goal == ObjNum)
         {
             winScreen.SetActive(true);
+            PlayerPrefs.SetInt("highestLevel", levelNum + 1);
+            Debug.Log(PlayerPrefs.GetInt("highestLevel")); 
         }
     }
 
