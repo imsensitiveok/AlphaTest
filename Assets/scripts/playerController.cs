@@ -35,10 +35,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get the input vector controls from player (x direction, y direction) - can use arrow or ASWD 
+        //get the input vector controls from player (x direction, y direction) - can use AWD keys 
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetKey("s") == true)
+        //if player presses space button, they will be able to look behind them 
+        if (Input.GetKey("space") == true)
         {
             mainCamera.enabled = false;
             backCamera.enabled = true; 
@@ -55,8 +56,20 @@ public class playerController : MonoBehaviour
         //only calculate the direction if the input direction is not 0, 0 (default direction) 
         if (inputDirection != Vector2.zero)
         {
-            //calculate the rotation of the character according to the input keys (uses trig) 
-            float targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + camera.eulerAngles.y;
+            float targetRotation; 
+            if(Input.GetKey("s") == true)
+            {
+                //if the character is moving backwards 
+                //calculate the rotation of the character in reverse 
+                targetRotation = Mathf.Atan2(-(inputDirection.x), -(inputDirection.y)) * Mathf.Rad2Deg + camera.eulerAngles.y; ;
+            }
+            else
+            {
+                //calculate the rotation of the character according to the input keys (uses trig) 
+                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + camera.eulerAngles.y;
+                //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations 
+            }
+
             //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations 
             transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
         }
@@ -66,8 +79,17 @@ public class playerController : MonoBehaviour
         //set the current speed to transition between idle movement and walking speed using SmoothDamp
         currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-        //move the character in the direction that the character is facing, moving it in world space 
-        transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+        if (Input.GetKey("s") == true)
+        {
+            //if the character is moving backwards 
+            //translate the character in the backwards direction 
+            transform.Translate(-(transform.forward) * currentSpeed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            //move the character in the direction that the character is facing, moving it in world space 
+            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+        }
 
         //use the animator controller to play the character animation when walking 
         float animationSpeedPercent = 1f * inputDirection.magnitude;
