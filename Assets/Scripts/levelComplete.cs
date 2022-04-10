@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class levelComplete : MonoBehaviour
 {
     public GameObject bridge;
+    public GameObject bridgePrompt;
     public int goal;
 
     private void Update()
@@ -15,7 +16,7 @@ public class levelComplete : MonoBehaviour
         if (goal == ObjNum)
         {
             bridge.SetActive(true);
-            //do the arrow thing
+            bridgePrompt.SetActive(true);
         }
     }
 }
