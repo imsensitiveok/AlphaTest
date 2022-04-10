@@ -10,6 +10,8 @@ public class playerController : MonoBehaviour
 
     public float walkSpeed = 5;
 
+    public GameObject gameOverScreen;
+
     Animator chameleonAnimator;
 
     public float turnSmoothTime = 0.2f;
@@ -35,66 +37,68 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //get the input vector controls from player (x direction, y direction) - can use AWD keys 
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-
-        //if player presses space button, they will be able to look behind them 
-        if (Input.GetKey("space") == true)
+        if (!gameOverScreen.activeSelf)
         {
-            mainCamera.enabled = false;
-            backCamera.enabled = true; 
-        }
-        else
-        {
-            mainCamera.enabled = true;
-            backCamera.enabled = false; 
-        }
+            //get the input vector controls from player (x direction, y direction) - can use AWD keys 
+            Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        //convert input vector into a direction 
-        Vector2 inputDirection = input.normalized;
-
-        //only calculate the direction if the input direction is not 0, 0 (default direction) 
-        if (inputDirection != Vector2.zero)
-        {
-            float targetRotation; 
-            if(Input.GetKey("s") == true)
+            //if player presses space button, they will be able to look behind them 
+            if (Input.GetKey("space") == true)
             {
-                //if the character is moving backwards 
-                //calculate the rotation of the character in reverse 
-                targetRotation = Mathf.Atan2(-(inputDirection.x), -(inputDirection.y)) * Mathf.Rad2Deg + camera.eulerAngles.y; ;
+                mainCamera.enabled = false;
+                backCamera.enabled = true;
             }
             else
             {
-                //calculate the rotation of the character according to the input keys (uses trig) 
-                targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + camera.eulerAngles.y;
-                //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations 
+                mainCamera.enabled = true;
+                backCamera.enabled = false;
             }
 
-            //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations 
-            transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
+            //convert input vector into a direction 
+            Vector2 inputDirection = input.normalized;
+
+            //only calculate the direction if the input direction is not 0, 0 (default direction) 
+            if (inputDirection != Vector2.zero)
+            {
+                float targetRotation;
+                if (Input.GetKey("s") == true)
+                {
+                    //if the character is moving backwards 
+                    //calculate the rotation of the character in reverse 
+                    targetRotation = Mathf.Atan2(-(inputDirection.x), -(inputDirection.y)) * Mathf.Rad2Deg + camera.eulerAngles.y;
+                }
+                else
+                {
+                    //calculate the rotation of the character according to the input keys (uses trig) 
+                    targetRotation = Mathf.Atan2(inputDirection.x, inputDirection.y) * Mathf.Rad2Deg + camera.eulerAngles.y;
+                    //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations 
+                }
+
+                //transform the character according to the targetRotation, uses SmoothDampAngle to ease transition between rotations
+                transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
+            }
+
+            //set the speed of the player's movements 
+            float targetSpeed = walkSpeed * inputDirection.magnitude;
+            //set the current speed to transition between idle movement and walking speed using SmoothDamp
+            currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
+
+            if (Input.GetKey("s") == true)
+            {
+                //if the character is moving backwards 
+                //translate the character in the backwards direction 
+                transform.Translate(-(transform.forward) * currentSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                //move the character in the direction that the character is facing, moving it in world space 
+                transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+            }
+
+            //use the animator controller to play the character animation when walking 
+            float animationSpeedPercent = 1f * inputDirection.magnitude;
+            chameleonAnimator.SetFloat("speedPercent", animationSpeedPercent);//, speedSmoothTime, Time.deltaTime); 
+
         }
-
-        //set the speed of the player's movements 
-        float targetSpeed = walkSpeed * inputDirection.magnitude;
-        //set the current speed to transition between idle movement and walking speed using SmoothDamp
-        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
-
-        if (Input.GetKey("s") == true)
-        {
-            //if the character is moving backwards 
-            //translate the character in the backwards direction 
-            transform.Translate(-(transform.forward) * currentSpeed * Time.deltaTime, Space.World);
-        }
-        else
-        {
-            //move the character in the direction that the character is facing, moving it in world space 
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-        }
-
-        //use the animator controller to play the character animation when walking 
-        float animationSpeedPercent = 1f * inputDirection.magnitude;
-        chameleonAnimator.SetFloat("speedPercent", animationSpeedPercent);//, speedSmoothTime, Time.deltaTime); 
-
-
     }
 }

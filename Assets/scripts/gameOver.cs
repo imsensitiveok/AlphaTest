@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class gameOver : MonoBehaviour
 {
     public GameObject gameOverScreen;
+    public GameObject winScreen;
     public GameObject[] snake;
     public int numSnakes;
     public string scene;
@@ -23,7 +24,7 @@ public class gameOver : MonoBehaviour
             for (int i = 0; i < numSnakes; i++)
             {
                 dist = Vector3.Distance(snake[i].transform.position, transform.position);       //calculates distance between the snake and the chameleon
-                if (dist < 4)                                                                   //checks if the snake is within game over range of the chameloen
+                if (dist < 4 && !winScreen.activeSelf)                                          //checks if the snake is within game over range of the chameloen
                 {
                     gameOverScreen.SetActive(true);                                             //activates game over screen
                 }
