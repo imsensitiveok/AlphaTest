@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class objectRotate : MonoBehaviour
 {
+    public float yRotate;
+    public float xRotate;
+    public float zRotate;
+
     void Update()
     {
-        transform.Rotate(0, 0.3f, 0); ;
+        transform.Rotate(xRotate, yRotate, zRotate);
     }
 }

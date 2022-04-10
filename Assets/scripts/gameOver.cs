@@ -11,15 +11,13 @@ public class gameOver : MonoBehaviour
     public GameObject[] snake;
     public int numSnakes;
     public string scene;
-    public int goal;
     private float dist;
 
 
     private void Update()
     {
         bool isHidden = (bool)Variables.ActiveScene.Get("IsHidden");
-        int ObjNum = (int)Variables.ActiveScene.Get("ObjNum");
-        if (isHidden == false && ObjNum < goal)                                                  //checks if player has won the game or is hidding
+        if (isHidden == false)                                                  //checks if player has won the game or is hidding
         {
             for (int i = 0; i < numSnakes; i++)
             {
