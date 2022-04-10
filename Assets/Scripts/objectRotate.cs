@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class globeRotate : MonoBehaviour
+public class objectRotate : MonoBehaviour
 {
     void Update()
     {
-        transform.Rotate(0, 0.05f, 0.02f); 
+        transform.Rotate(0, 0.3f, 0); ;
     }
 }
