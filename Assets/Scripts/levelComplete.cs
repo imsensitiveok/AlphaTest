@@ -12,14 +12,33 @@ public class levelComplete : MonoBehaviour
 
     public AudioSource FoundAll;
 
+    bool complete = false;
+
     private void Update()
     {
         int ObjNum = (int)Variables.ActiveScene.Get("ObjNum");
         if (goal == ObjNum)
         {
+            Debug.Log("Goal Reached");
+            complete = true;
+            //AudioListener.pause = true;
+            FoundAll.Play();
+            //AudioListener.pause = false;
+
             bridge.SetActive(true);
             bridgePrompt.SetActive(true);
-            FoundAll.Play();
+            
         }
+
+        /*if (complete)
+        {
+            AudioListener.pause = true;
+            FoundAll.Play();
+            AudioListener.pause = false;
+            complete = false;
+            Destroy(FoundAll);
+            
+        }*/
+
     }
 }
