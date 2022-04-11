@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1952744622713647663}
   - component: {fileID: 4537719419126806656}
   - component: {fileID: 2198964794042235098}
+  - component: {fileID: 608448107499290476}
   m_Layer: 0
   m_Name: GreenChip
   m_TagString: GreenChip
@@ -30,7 +31,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 28.87813, y: 13.727724, z: -71.92717}
   m_LocalScale: {x: 0.43765464, y: 0.8993169, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7875657106696419526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -112,3 +114,84 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &608448107499290476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3428834687922329220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8853d53682b6db442af08a0191b7b775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClick: {fileID: 0}
+  tokenCollect: {fileID: 7875657106696419513}
+--- !u!1001 &6662390379727229510
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1721173956668921966}
+    m_Modifications:
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 317.35083
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 41.78734
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.30002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9553145
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.29559124
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548384234432670462, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+      propertyPath: m_Name
+      value: TokenSound
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+--- !u!4 &7875657106696419526 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3548384234432670336, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+  m_PrefabInstance: {fileID: 6662390379727229510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7875657106696419513 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3548384234432670463, guid: 82b9927d56617d542bda4d2664f1b2f9, type: 3}
+  m_PrefabInstance: {fileID: 6662390379727229510}
+  m_PrefabAsset: {fileID: 0}

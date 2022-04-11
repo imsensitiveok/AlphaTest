@@ -7,6 +7,8 @@ public class MusicControl : MonoBehaviour
 {
     public static MusicControl instance;
 
+    bool muteOn = false;
+
     private void Awake()
     {
 
@@ -39,6 +41,13 @@ public class MusicControl : MonoBehaviour
         {
             
             Destroy(gameObject);
+        }
+
+        if (Input.GetKeyDown("m"))
+        {
+            Debug.Log("muted");
+            muteOn = !muteOn;
+            AudioListener.pause = muteOn;
         }
 
     }

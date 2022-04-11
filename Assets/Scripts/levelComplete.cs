@@ -10,6 +10,8 @@ public class levelComplete : MonoBehaviour
     public GameObject bridgePrompt;
     public int goal;
 
+    public AudioSource FoundAll;
+
     private void Update()
     {
         int ObjNum = (int)Variables.ActiveScene.Get("ObjNum");
@@ -17,6 +19,7 @@ public class levelComplete : MonoBehaviour
         {
             bridge.SetActive(true);
             bridgePrompt.SetActive(true);
+            FoundAll.Play();
         }
     }
 }
