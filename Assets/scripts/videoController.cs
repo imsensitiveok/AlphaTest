@@ -8,7 +8,8 @@ public class videoController : MonoBehaviour
 {
 
     public VideoPlayer cutScene;
-    public string nextSceneName; 
+    public string nextSceneName;
+    public float videoLength; 
     
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class videoController : MonoBehaviour
         bool videoFinished = false; 
         while(videoFinished == false)
         {
-            yield return new WaitForSeconds(13.0f);
+            yield return new WaitForSeconds(videoLength);
             videoFinished = true; 
             
         }
