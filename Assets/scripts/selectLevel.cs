@@ -9,7 +9,6 @@ public class selectLevel : MonoBehaviour
     public Button level1;
     public Button level2;
     public Button level3;
-    public Button level4;
 
     Color32 disabledButtonColor = new Color32(255, 255, 255, 72);
     Color32 enabledButtonColor = new Color32(255, 255, 255, 255);
@@ -25,10 +24,10 @@ public class selectLevel : MonoBehaviour
         }
 
 
-        Button[] levelButtons = { level1, level2, level3, level4 };
+        Button[] levelButtons = { level1, level2, level3 };
         Debug.Log(PlayerPrefs.GetInt("highestLevel"));
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             if (i < PlayerPrefs.GetInt("highestLevel"))
             {
