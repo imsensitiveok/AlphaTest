@@ -5,7 +5,13 @@ using UnityEngine;
 public class SFXPlaying : MonoBehaviour
 {
     public AudioSource buttonClick;
-    public AudioSource tokenCollect;
+    public AudioClip tokenCollect;
+    public AudioClip snakeBite;
+
+    public void PlayToken()
+    {
+        //tokenCollect.Play();
+    }
 
     public void PlayClick()
     {
@@ -14,7 +20,30 @@ public class SFXPlaying : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        tokenCollect.Play();
+        //tokenCollect.Play();
+        if(other.tag == "RedChip")
+        {
+            AudioSource.PlayClipAtPoint(tokenCollect, transform.position);
+        }
+         if(other.tag == "BlueChip")
+        {
+            AudioSource.PlayClipAtPoint(tokenCollect, transform.position);
+        }
+         if (other.tag == "GreenChip")
+        {
+            AudioSource.PlayClipAtPoint(tokenCollect, transform.position);
+        }
+
+        if (other.tag == "collectable")
+        {
+            AudioSource.PlayClipAtPoint(tokenCollect, transform.position);
+        }
+
+        if (other.tag == "Enemy")
+        {
+            AudioSource.PlayClipAtPoint(snakeBite, transform.position);
+        }
+
     }
 
 }

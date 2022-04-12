@@ -10,6 +10,7 @@ TagManager:
   - GreenChip
   - Objective
   - Enemy
+  - collectable
   layers:
   - Default
   - TransparentFX
