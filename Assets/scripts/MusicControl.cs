@@ -43,6 +43,12 @@ public class MusicControl : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (SceneManager.GetActiveScene().name == "levelThree")
+        {
+
+            Destroy(gameObject);
+        }
+
         if (Input.GetKeyDown("m"))
         {
             Debug.Log("muted");
