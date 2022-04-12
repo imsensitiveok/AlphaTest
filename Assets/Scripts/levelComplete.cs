@@ -10,35 +10,32 @@ public class levelComplete : MonoBehaviour
     public GameObject bridgePrompt;
     public int goal;
 
-    public AudioSource FoundAll;
+    //public AudioSource FoundAll;
+    public AudioClip FoundAll;
 
-    bool complete = false;
+    bool complete;
+
+    private void Start()
+    {
+        complete = false;
+    }
 
     private void Update()
     {
         int ObjNum = (int)Variables.ActiveScene.Get("ObjNum");
         if (goal == ObjNum)
         {
-            Debug.Log("Goal Reached");
-            complete = true;
-            //AudioListener.pause = true;
-            FoundAll.Play();
-            //AudioListener.pause = false;
-
             bridge.SetActive(true);
             bridgePrompt.SetActive(true);
-            
+
         }
 
-        /*if (complete)
+        if (goal == ObjNum && !complete)
         {
-            AudioListener.pause = true;
-            FoundAll.Play();
-            AudioListener.pause = false;
-            complete = false;
-            Destroy(FoundAll);
-            
-        }*/
+            AudioSource.PlayClipAtPoint(FoundAll, transform.position);
+            complete = true;
+        }
 
     }
+
 }
