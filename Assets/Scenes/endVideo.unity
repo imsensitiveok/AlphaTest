@@ -695,7 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutScene: {fileID: 2135819534}
   nextSceneName: landingPage
-  videoLength: 13
+  videoLength: 2
 --- !u!328 &2135819534
 VideoPlayer:
   m_ObjectHideFlags: 0
