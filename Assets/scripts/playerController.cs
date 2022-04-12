@@ -11,6 +11,7 @@ public class playerController : MonoBehaviour
     public float walkSpeed = 5;
 
     public GameObject gameOverScreen;
+    public GameObject winScreen;
 
     Animator chameleonAnimator;
 
@@ -37,7 +38,7 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameOverScreen.activeSelf)
+        if (!gameOverScreen.activeSelf && !winScreen.activeSelf)
         {
             //get the input vector controls from player (x direction, y direction) - can use AWD keys 
             Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));

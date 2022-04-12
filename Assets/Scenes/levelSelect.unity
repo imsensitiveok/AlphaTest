@@ -461,6 +461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonClick: {fileID: 359005977}
   tokenCollect: {fileID: 0}
+  snakeBite: {fileID: 0}
 --- !u!82 &359005977
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1478,6 +1479,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 638670665}
+        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
+        m_MethodName: clickChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: levelThree
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1729777997
